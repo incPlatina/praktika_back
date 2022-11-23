@@ -11,7 +11,8 @@ $result=$mysql->query("SELECT * FROM `users` WHERE `login`='$login' AND `passwor
 $user = $result->fetch_assoc();
 
 if ($user['name'] == '' ){
-    echo "Неправильный логин или пароль";
+    $login='not';
+    header("Location: /Авторизация.php?login=$login");
     exit();
 }
 
