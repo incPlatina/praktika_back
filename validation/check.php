@@ -15,6 +15,14 @@ if(mb_strlen($login) < 5 || mb_strlen($login)>90){
 }
 $password = md5($password."wrgrwrhrh23424t4");
 $mysql = new mysqli('localhost','root','root','register_db');
+
+$result=$mysql->query("SELECT * FROM `users` WHERE `login`='$login'");
+$user = $result->fetch_assoc();
+if ($user['login'] == $login ){
+    echo "Такой логин уже существует";
+    exit();
+}
+
 $mysql->query("INSERT INTO `users` (`login`,`password`,`name`)
 VALUES('$login','$password','$name')");
 

@@ -10,7 +10,7 @@ $mysql = new mysqli('localhost','root','root','register_db');
 $result=$mysql->query("SELECT * FROM `users` WHERE `login`='$login' AND `password`='$password'");
 $user = $result->fetch_assoc();
 
-if(count($user)==0){
+if ($user['name'] == '' ){
     echo "Неправильный логин или пароль";
     exit();
 }
